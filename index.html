@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="EN">
+  <head>
+    <meta charset="utf-8">
+    <script async defer src="scripts/script.js"></script>
+  </head>
+  <body>
+    <div id="dataIn">
+      <form name="bookForm">
+        <fieldset>
+          <legend>Add a book</legend>
+          <label for="bookTitle">Book Title</label>
+          <input name="bookTitle" id="bookTitle" type="text" required>
+          <label for="authorTitle">Author Title</label>
+          <input name="authorTitle" id="authorTitle" type="text">
+          <label for="authorFirst">Author First Name</label>
+          <input name="authorFirst" id="authorFirst" type="text" required>
+          <label for="authorMiddle">Author Middle Name</label>
+          <input name="authorMiddle" id="authorMiddle" type="text" required>
+          <label for="authorLast">Author Last Name</label>
+          <input name="authorLast" id="authorLast" type="text" required>
+          <input type="submit" name="submit" value="Submit">
+        </fieldset>
+      </form>
+    </div>
+    <div id="dataOut">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+          </tr>
+        </thead>
+        <tbody id="tBody">
+
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
