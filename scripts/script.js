@@ -91,12 +91,30 @@ function createBook() {
 
   //Capture the form data for the middle name
   var user_authorMiddle = user_bookForm.authorMiddle.value;
+  //If there is an middle name, do the following
   if (user_authorMiddle) {
+    //Create a child element name middlename
     var authorMiddle = xmlDocument.createElement('middlename');
+    //Create a text node with the data from the form
     var authorMiddleText = xmlDocument.createTextNode(user_authorMiddle);
+    //Append the text node to the element
     authorMiddle.appendChild(authorMiddleText);
+    //Append the element to the parent author
     author.appendChild(authorMiddle);
   }
+
+  //Create a child of author named lastname
+  var authorLast = xmlDocument.createElement('lastname');
+  //Capture form data for last name
+  var user_authorLast = user_bookForm.authorMiddle.value;
+  //Create a text node with the form data
+  var authorLastText = xmlDocument.createTextNode(user_authorLast);
+  //Append the text node to the element
+  authorLast.appendChild(authorLastText);
+  //Append the authorLast to the author parent element
+  author.appendChild(authorLast);
+
+
 
 
 }
