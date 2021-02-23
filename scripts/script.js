@@ -54,6 +54,8 @@ function generateTable() {
 function createBook() {
   //Create a new XML element named 'book'.
   var newBook = xmlDocument.createElement("book");
+  //Capture the book form as a variable
+  var user_bookForm = document.forms.bookForm;
 
   //Create a child element named 'title'
   var bookTitle = xmlDocument.createElement("title");
@@ -61,15 +63,40 @@ function createBook() {
   var user_bookTitle = user_bookForm.bookTitle.value;
   //Create a text node and populate it with the value of 'user_bookTitle'
   var bookTitleText = xmlDocument.createTextNode(user_bookTitle);
-  //Attach the text node to the
+  //Attach the text node to the parent element
   bookTitle.appendChild(bookTitleText);
+  //Append the book title element to the book parent.
+  newBook.appendChild(bookTitle);
 
 
-  let user_bookForm = document.forms.bookForm;
+  //Create the parent author element
+  var author = xmlDocument.createElement("author");
+  //Capture form data for authorTitle field
+  var user_authorTitle = user_bookForm.authorTitle.value;
+  //Only create create and set an attribute if there is one
+  if (user_authorTitle) {
+    author.setAttribute('title', user_authorTitle);
+  }
+  //Create the first child of author, 'First Name'
+  var authorFirst = xmlDocument.createElement("firstname");
+  //Capture the form data for the 'First Name'
+  var user_authorFirst = user_bookForm.authorFirst.value;
+  //Create a text node with the value of the firstname form data
+  var authorFirstText = xmlDocument.createTextNode(user_authorFirst);
+  //Append the text node to the element
+  authorFirst.appendChild(authorFirstText);
+  //Append the first name to the author parent
+  author.appendChild(authorFirst);
 
-  let user_authorTitle = user_bookForm.authorTitle.value;
-  if (authorTitle) {
-    newBook
-  //Create a child element named 'author'
+
+  //Capture the form data for the middle name
+  var user_authorMiddle = user_bookForm.authorMiddle.value;
+  if (user_authorMiddle) {
+    var authorMiddle = xmlDocument.createElement('middlename');
+    var authorMiddleText = xmlDocument.createTextNode(user_authorMiddle);
+    authorMiddle.appendChild(authorMiddleText);
+    author.appendChild(authorMiddle);
+  }
+
 
 }
