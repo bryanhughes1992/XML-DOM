@@ -13,9 +13,10 @@ xml.onload = function () {
   xmlDocument = xml.responseXML;
   console.log(xmlDocument);
   document.getElementById("tBody").innerHTML = xmlDocument.documentElement.nodeName;
-  //createBook();
+  createBook();
   generateTable();
 
+  //Listen and prevent the form from sending
   document.forms.bookForm.addEventListener("submit", function(event) {
     event.preventDefault();
     console.log("test");
@@ -27,10 +28,13 @@ xml.onerror = function () {
 }
 
 function generateTable() {
+  //Capture the XML element 'book'
   var book = xmlDocument.getElementsByTagName("book");
+  //Declare an empty string for a table row to be
   var tRow = '';
-
+  //Loop through the xml books and
   for (let i = 0; i < book.length; i++) {
+    //Create an
     let id = book[i].getElementsByTagName("id")[0].textContent;
     let title = book[i].getElementsByTagName("title")[0].textContent;
     let author = book[i].getElementsByTagName('author')[0];
@@ -56,6 +60,25 @@ function createBook() {
   var newBook = xmlDocument.createElement("book");
   //Capture the book form as a variable
   var user_bookForm = document.forms.bookForm;
+  //Capture all books in XML document model
+  var allBooks = xmlDocument.getElementsByTagName("books");
+
+  //For every book in books, if 'i' is equal to the length of the book
+  for (var i = 0; i !== allBooks.length; i++) {
+    if (i === allBooks.length) {
+      var newBookId = i + 2;
+    }
+  }
+
+  //Create an id element
+  var bookId = xmlDocument.createElement('id');
+  //Set the id value to the newBookId value
+  var bookIdText = xmlDocument.createTextNode(newBookId);
+  //Append the text node to the element
+  bookId.appendChild(bookIdText);
+  //Append the id to the newBook
+  newBook.appendChild(bookId);
+
 
   //Create a child element named 'title'
   var bookTitle = xmlDocument.createElement("title");
@@ -113,8 +136,7 @@ function createBook() {
   authorLast.appendChild(authorLastText);
   //Append the authorLast to the author parent element
   author.appendChild(authorLast);
-
-
-
+  //Append the author to the book
+  newBook.appendChild(author);
 
 }
