@@ -11,9 +11,8 @@ xml.send();
 //Placing onload instructions after document request
 xml.onload = function () {
   xmlDocument = xml.responseXML;
-  console.log(xmlDocument);
+  //console.log(xmlDocument);
   document.getElementById("tBody").innerHTML = xmlDocument.documentElement.nodeName;
-  createBook();
   generateTable();
 
   //Listen and prevent the form from sending
@@ -71,19 +70,20 @@ function createBook() {
   //Capture the book form as a variable
   var user_bookForm = document.forms.bookForm;
   //Capture all books in XML document model
-  var allBooks = xmlDocument.getElementsByTagName("books");
+  var allBooks = xmlDocument.getElementsByTagName("book");
 
-  //For every book in books, if 'i' is equal to the length of the book
-  for (var i = 0; i !== allBooks.length; i++) {
-    if (i === allBooks.length) {
-      var newBookId = allBooks[i+2];
-    }
-  }
+  var newBookId = allBooks[allBooks.length-1];
+  console.log(newBookId.childNodes[1]);
+
 
   //Create an id element
   var bookId = xmlDocument.createElement('id');
   //Set the id value to the newBookId value
-  var bookIdText = xmlDocument.createTextNode(newBookId);
+  var dumbNode = xmlDocument.createTextNode('hello');
+  newBook.appendChild(dumbNode);
+  var newId = parseInt(newBookId.childNodes[1].textContent) + 1;
+  newId = newId.toString().padStart(4, "0");
+  var bookIdText = xmlDocument.createTextNode(newId);
   //Append the text node to the element
   bookId.appendChild(bookIdText);
   //Append the id to the newBook
@@ -109,6 +109,8 @@ function createBook() {
   //Only create create and set an attribute if there is one
   if (user_authorTitle) {
     author.setAttribute('title', user_authorTitle);
+  } else {
+    author.setAttribute('title', "");
   }
   //Create the first child of author, 'First Name'
   var authorFirst = xmlDocument.createElement("firstname");

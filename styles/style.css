@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  display: grid;
+  place-content: center;
+  width: 100%;
+  height: auto;
+}
+
+fieldset {
+  display: flex;
+  flex-flow: column;
+  padding: 15px;
+}
+
+#submit {
+  width: 20%;
+  margin: 10px auto;
+}
+
+.master-container {
+  display: flex;
+  flex-flow: column;
+}
+
+#dataIn {
+  width: 100%;
+  height: auto;
+}
+
+#dataOut {
+  display: grid;
+  place-content: center;
+  width: 100%;
+  height: auto;
+}
+
+table, th, td {
+  border: solid 1px #000;
+  text-align: center;
+}
+
+th, td {
+  padding:15px;
+}
