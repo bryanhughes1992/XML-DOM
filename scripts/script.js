@@ -19,10 +19,14 @@ xml.onload = function () {
   //Listen and prevent the form from sending
   document.forms.bookForm.addEventListener("submit", function(event) {
     event.preventDefault();
+    createBook();
+    generateTable();
     console.log("test");
   });
 }
 
+
+//Listen for an xml error, fire this function
 xml.onerror = function () {
   console.log("Error while loading XML...");
 }
@@ -72,7 +76,7 @@ function createBook() {
   //For every book in books, if 'i' is equal to the length of the book
   for (var i = 0; i !== allBooks.length; i++) {
     if (i === allBooks.length) {
-      var newBookId = i + 2;
+      var newBookId = allBooks[i+2];
     }
   }
 
@@ -135,7 +139,7 @@ function createBook() {
   //Create a child of author named lastname
   var authorLast = xmlDocument.createElement('lastname');
   //Capture form data for last name
-  var user_authorLast = user_bookForm.authorMiddle.value;
+  var user_authorLast = user_bookForm.authorLast.value;
   //Create a text node with the form data
   var authorLastText = xmlDocument.createTextNode(user_authorLast);
   //Append the text node to the element
@@ -144,5 +148,7 @@ function createBook() {
   author.appendChild(authorLast);
   //Append the author to the book
   newBook.appendChild(author);
+  //Append the new book to the 'Books' root
+  xmlDocument.documentElement.appendChild(newBook);
 
 }
