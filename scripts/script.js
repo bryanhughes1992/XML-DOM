@@ -34,24 +34,30 @@ function generateTable() {
   var tRow = '';
   //Loop through the xml books and
   for (let i = 0; i < book.length; i++) {
-    //Create an
+    //A variable to hold value of the id element
     let id = book[i].getElementsByTagName("id")[0].textContent;
+    //A var to hold the 'title' value
     let title = book[i].getElementsByTagName("title")[0].textContent;
+    //A var to hold the book 'author' value
     let author = book[i].getElementsByTagName('author')[0];
+    //A var to hold author 'title' attribute
     let authorTitle = author.getAttribute("title");
+    //A var to hold the author 'firstname'
     let firstName = author.getElementsByTagName('firstname')[0].textContent;
 
+    //An empty string to hold the middlename
     let middleName = '';
-
+    //If there is a middle name, set it to the value, otherwise, keep it an empty string
     if(author.getElementsByTagName('middlename').length != 0) {
       middleName = author.getElementsByTagName('middlename')[0].textContent;
     }
 
-
+    //A variable to store the content of the xml node 'lastname'
     let lastName = author.getElementsByTagName('lastname')[0].textContent;
-
+    //Append this concatenated string to the tRow
     tRow += `<tr><td>${id}</td><td>${title}</td><td>${lastName}, ${authorTitle} ${firstName} ${middleName}</td></tr>`;
   }
+  //Set the innerHTML of the table body to the value of tRow
   document.getElementById("tBody").innerHTML = tRow;
 }
 
